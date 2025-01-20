@@ -22,9 +22,9 @@ class CommentController extends Controller
         $post->comments()->create([
             'body' => $validated['body'],
             'user_id' => $request->user()->id,
+            'post_id' => $post->id,
         ]);
-
-        return redirect()->route('posts.show', $post)->with('success', 'Comment added successfully.');
+        return redirect()->back()->with('success', 'Comment added successfully.');
     }
 
     public function edit(Comment $comment)
@@ -46,7 +46,6 @@ class CommentController extends Controller
     public function destroy(Comment $comment)
     {
         $comment->delete();
-
-        return redirect()->route('posts.show', $comment->post)->with('success', 'Comment deleted successfully.');
+        return redirect()->back()->with('success', 'Comment deleted successfully.');
     }
 }

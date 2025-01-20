@@ -10,15 +10,10 @@ class PostController extends Controller
 {
     public function __construct()
     {
-        $this->authorizeResource(Post::class, 'post');
+        // $this->authorizeResource(Post::class, 'post');
     }
 
-    public function index()
-    {
-        $posts = Post::with(['user', 'category', 'comments'])->paginate(10);
-        $categories = Category::all();
-        return view('posts.index', compact('posts', 'categories'));
-    }
+    public function index() {}
 
     public function create()
     {
@@ -35,14 +30,14 @@ class PostController extends Controller
         ]);
 
         $request->user()->posts()->create($validated);
-
-        return redirect()->route('posts.index')->with('success', 'Post created successfully.');
+        session()->flash('success', 'Data saved successfully!');
+        return redirect()->back()->with('success', 'Post created successfully.');
     }
 
     public function show(Post $post)
     {
         $post->load(['comments.user', 'category', 'user']);
-        return view('posts.show', compact('post'));
+        return view('pages.post_details.view', compact('post'));
     }
 
     public function edit(Post $post)
@@ -71,10 +66,19 @@ class PostController extends Controller
         return redirect()->route('posts.index')->with('success', 'Post deleted successfully.');
     }
 
-    public function filterByCategory(Category $category)
+    public function filterByCategory(Request $request)
     {
-        $posts = $category->posts()->with(['user', 'category', 'comments'])->paginate(10);
         $categories = Category::all();
-        return view('posts.index', compact('posts', 'categories'));
+
+        // If a category is selected, filter by that category
+        if ($request->category) {
+            $category = Category::findOrFail($request->category);
+            $posts = $category->posts()->with(['user', 'category', 'comments'])->paginate(10);
+        } else {
+            // If no category is selected, show all posts
+            $posts = Post::with(['user', 'category', 'comments'])->paginate(10);
+        }
+
+        return view('pages.home.index', compact('posts', 'categories'));
     }
 }
