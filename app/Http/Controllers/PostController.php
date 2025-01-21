@@ -43,7 +43,7 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
-        return view('posts.edit', compact('post', 'categories'));
+        return view('dashboard.editPost', compact('post', 'categories'));
     }
 
     public function update(Request $request, Post $post)
@@ -56,14 +56,14 @@ class PostController extends Controller
 
         $post->update($validated);
 
-        return redirect()->route('posts.index')->with('success', 'Post updated successfully.');
+        return redirect()->route('dashboard')->with('success', 'Post updated successfully.');
     }
 
     public function destroy(Post $post)
     {
         $post->delete();
 
-        return redirect()->route('posts.index')->with('success', 'Post deleted successfully.');
+        return redirect()->back()->with('success', 'Post deleted successfully.');
     }
 
     public function filterByCategory(Request $request)

@@ -4,15 +4,25 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Category;
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', HomeController::class)->name('home');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+
+    $categories = Category::all();
+    $posts = Post::with(['user', 'category', 'comments'])
+        ->where('user_id', Auth::id())
+        ->orderBy('id', 'desc')
+        ->paginate(5);
+
+    return view('dashboard', compact('categories', 'posts'));
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -31,4 +41,4 @@ Route::get('/posts/filter', [PostController::class, 'filterByCategory'])->name('
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
