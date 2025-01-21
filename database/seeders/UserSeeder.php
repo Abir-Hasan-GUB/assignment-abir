@@ -13,13 +13,11 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 1; $i <= 5; $i++) {
-            User::create([
-                'name'              => fake()->name(),
-                'email'             => fake()->unique()->safeEmail(),
-                'email_verified_at' => now(),
-                'password'          => Hash::make('12345678'), // bcrypt the password
-            ]);
-        }
+        User::create([
+            'name'              => "Mr. Admin",
+            'email'             => "admin@gmail.com",
+            'email_verified_at' => now(),
+            'password'          => Hash::make('12345678'), // bcrypt the password
+        ]);
     }
 }

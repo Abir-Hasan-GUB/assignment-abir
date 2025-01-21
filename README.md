@@ -21,7 +21,7 @@ This project is a simple blog commenting system built with Laravel. It includes 
 
 #### Authentication:
 - Users can register, log in, and log out.
-- A test user is provided for demo purposes:
+- A test user will create if run the user seeder and it's credintial will be:
   - **Email:** admin@gmail.com
   - **Password:** 12345678
 
