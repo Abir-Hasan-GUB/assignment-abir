@@ -2,6 +2,16 @@
 
 This project is a simple blog commenting system built with Laravel. It includes features for creating posts, commenting, managing user-specific posts, and filtering posts by category. It also incorporates user authentication, roles, and policies.
 
+## Live Demo
+
+If you want to test the application on a live server, please visit:  
+[Live Demo](https://assignment.abirr.com/)
+
+**Login Credentials:**  
+- **Email:** admin@gmail.com  
+- **Password:** 12345678
+
+
 ## Features
 
 ### Core Features:
