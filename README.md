@@ -31,12 +31,3 @@ This project is a simple blog commenting system built with Laravel. It includes 
 
 #### Policies:
 - Implemented policies ensure only authorized users can edit or delete posts and comments.
-
-## Installation
-
-### Prerequisites
-- PHP >= 8.1
-- Composer
-- MySQL
-- Laravel >= 9
-- A web server (e.g., Apache or Nginx)
