@@ -43,7 +43,5 @@ This project is a simple blog commenting system built with Laravel. It includes 
 
 ### Steps
 
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/your-repo-link.git
-   cd blog-commenting-system
+## Live View
+You can explore the live version of the project at [abir.com](http://abirr.com), where the blog commenting system is fully functional and ready for use.
