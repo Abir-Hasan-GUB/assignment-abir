@@ -40,8 +40,3 @@ This project is a simple blog commenting system built with Laravel. It includes 
 - MySQL
 - Laravel >= 9
 - A web server (e.g., Apache or Nginx)
-
-### Steps
-
-## Live View
-You can explore the live version of the project at [abir.com](http://abirr.com), where the blog commenting system is fully functional and ready for use.
