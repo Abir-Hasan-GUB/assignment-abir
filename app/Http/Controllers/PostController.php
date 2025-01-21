@@ -23,6 +23,7 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+        // Validate the input data
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
@@ -48,6 +49,7 @@ class PostController extends Controller
 
     public function update(Request $request, Post $post)
     {
+        // Validate the input data
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',

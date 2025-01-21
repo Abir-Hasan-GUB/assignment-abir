@@ -8,17 +8,22 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+    //   Apply authorization policies to Comment resource.
     public function __construct()
     {
         $this->authorizeResource(Comment::class, 'comment');
     }
 
+
+    // Store a newly created comment in storage.
     public function store(Request $request, Post $post)
     {
+        // Validate the input data
         $validated = $request->validate([
             'body' => 'required|string|max:500',
         ]);
 
+        // Create a new comment with the authenticated user
         $post->comments()->create([
             'body' => $validated['body'],
             'user_id' => $request->user()->id,
@@ -29,11 +34,12 @@ class CommentController extends Controller
 
     public function edit(Comment $comment)
     {
-        return view('comments.edit', compact('comment'));
+        return view('comments.edit', compact('comment')); // return specific comment to show for edit
     }
 
     public function update(Request $request, Comment $comment)
     {
+        // Validate the input data
         $validated = $request->validate([
             'body' => 'required|string|max:500',
         ]);
